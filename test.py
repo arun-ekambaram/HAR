@@ -11,7 +11,7 @@ import adafruit_adxl34x
 import math
 
 fs = 20
-frame_size = fs*10
+frame_size = fs*4
 hop_size = fs*2
 
 
@@ -47,12 +47,12 @@ if __name__ == '__main__':
     while True:
         if ac.events['tap']:
             print("Reading input for 2 sec!!..")
-            t_end = time.time() + 2
+            t_end = time.time() + 1.5
             while time.time() < t_end:  # records input for 1.5 seconds
                 x, y, z = ac.acceleration
-                xx = "%0.7f" % x
-                yy = "%0.7f" % y
-                zz = "%0.7f" % z
+                xx = "%0.6f" % x
+                yy = "%0.6f" % y
+                zz = "%0.6f" % z
                 df.loc[len(df.index), :] = [xx, yy, zz, 0]
             c = c+1
             print(".......")
